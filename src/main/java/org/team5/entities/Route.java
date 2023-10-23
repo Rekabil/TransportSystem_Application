@@ -1,9 +1,7 @@
 package org.team5.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -16,6 +14,9 @@ public class Route {
     private Location takeOffLocation;
     private Location destination;
     private double averageArrivalTime;
+
+    @OneToMany(mappedBy = "route")
+    private List<PublicTransport> publicTransport;
 
     public Route() {
     }

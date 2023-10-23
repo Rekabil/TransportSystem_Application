@@ -1,6 +1,7 @@
 package org.team5.entities;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -14,6 +15,9 @@ public class TicketVendor {
     @GeneratedValue
     private UUID id;
     private Location location;
+
+    @OneToMany(mappedBy = "station")
+    private List<Ticket> ticket;
 
     public TicketVendor() {
     }

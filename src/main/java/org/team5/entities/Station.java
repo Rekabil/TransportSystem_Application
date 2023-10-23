@@ -1,9 +1,7 @@
 package org.team5.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -15,6 +13,9 @@ public class Station {
     private UUID id;
     private Location location;
     private Set<PublicTransport> pubTransList;
+
+    @OneToMany(mappedBy = "station")
+    private List<PublicTransport> publicTransport;
 
     public Station() {
     }

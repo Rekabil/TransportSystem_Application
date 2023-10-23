@@ -11,12 +11,21 @@ public class PublicTransport {
     @Id
     @GeneratedValue
     private UUID id;
+    @Enumerated(EnumType.STRING)
     private TransportStatus status;
     private LocalDate startDateStatus;
     private LocalDate endDateStatus;
+    @Enumerated(EnumType.STRING)
     private TypeOfTransport transportType;
 
-    /*private Route route;*/
+    @ManyToOne
+    @JoinColumn(name = "route_id", nullable = false)
+    private Route route;
+
+    @ManyToOne
+    @JoinColumn(name = "publicTrans_id", nullable = false)
+    private Station station;
+
 
     public PublicTransport() {
     }
@@ -27,6 +36,14 @@ public class PublicTransport {
         this.startDateStatus = startDateStatus;
         this.endDateStatus = endDateStatus;
         this.transportType = transportType;
+    }
+
+    public Route getRoute() {
+        return route;
+    }
+
+    public void setRoute(Route route) {
+        this.route = route;
     }
 
     public UUID getId() {

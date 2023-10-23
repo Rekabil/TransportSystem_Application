@@ -1,9 +1,6 @@
 package org.team5.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -19,6 +16,9 @@ public class UserCard {
     private LocalDate dateOfBirth;
     private LocalDate dateRenewed;
     private LocalDate cardExpiryDate;
+
+    @OneToOne(mappedBy = "user")
+    private TicketSubscription ticketSubscription;
 
     public UserCard() {
     }

@@ -11,6 +11,8 @@ public class TicketMachine extends TicketVendor {
     public TicketMachine() {
     }
 
+
+
     public TicketMachine(Location location, MachineStatus machineStatus) {
         super(location);
         this.machineStatus = machineStatus;

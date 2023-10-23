@@ -16,6 +16,9 @@ public class Ticket {
     private UUID id;
     private int validity;
     private LocalDate dateIssued;
+
+    @ManyToOne
+    @JoinColumn(name = "ticketVendor_id", nullable = false)
     private TicketVendor ticketVendor;
 
     public Ticket() {
