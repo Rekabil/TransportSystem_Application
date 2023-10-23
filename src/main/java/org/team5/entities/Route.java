@@ -11,7 +11,13 @@ public class Route {
     @Id
     @GeneratedValue
     private UUID id;
+
+    @OneToOne
+    @JoinColumn(name = "takeOffLocation_id")
     private Location takeOffLocation;
+
+    @OneToOne
+    @JoinColumn(name = "destination_id")
     private Location destination;
     private double averageArrivalTime;
 

@@ -17,7 +17,7 @@ public class UserCard {
     private LocalDate dateRenewed;
     private LocalDate cardExpiryDate;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "userCard")
     private TicketSubscription ticketSubscription;
 
     public UserCard() {

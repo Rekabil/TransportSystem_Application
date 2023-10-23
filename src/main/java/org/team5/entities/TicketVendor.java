@@ -14,9 +14,11 @@ public class TicketVendor {
     @Id
     @GeneratedValue
     private UUID id;
+    @OneToOne
+    @JoinColumn(name = "location_id", nullable = false)
     private Location location;
 
-    @OneToMany(mappedBy = "station")
+    @OneToMany(mappedBy = "ticketVendor")
     private List<Ticket> ticket;
 
     public TicketVendor() {

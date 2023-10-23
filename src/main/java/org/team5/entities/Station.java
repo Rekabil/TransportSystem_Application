@@ -11,8 +11,11 @@ public class Station {
     @Id
     @GeneratedValue
     private UUID id;
+
+    @OneToOne
+    @JoinColumn(name = "location_id", nullable = false)
     private Location location;
-    private Set<PublicTransport> pubTransList;
+
 
     @OneToMany(mappedBy = "station")
     private List<PublicTransport> publicTransport;
@@ -20,9 +23,9 @@ public class Station {
     public Station() {
     }
 
-    public Station(Location location, Set<PublicTransport> pubTransList) {
+    public Station(Location location) {
         this.location = location;
-        this.pubTransList = pubTransList;
+
     }
 
     @Override
@@ -30,7 +33,6 @@ public class Station {
         return "Station{" +
                 "id=" + id +
                 ", location=" + location +
-                ", pubTransList=" + pubTransList +
                 '}';
     }
 
@@ -47,11 +49,5 @@ public class Station {
         this.location = location;
     }
 
-    public Set<PublicTransport> getPubTransList() {
-        return pubTransList;
-    }
 
-    public void setPubTransList(Set<PublicTransport> pubTransList) {
-        this.pubTransList = pubTransList;
-    }
 }

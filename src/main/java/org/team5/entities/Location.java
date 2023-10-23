@@ -1,9 +1,6 @@
 package org.team5.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -15,6 +12,18 @@ public class Location {
     private UUID id;
     private String city;
     private String street;
+
+    @OneToOne(mappedBy = "location")
+    private TicketVendor ticketVendor;
+
+    @OneToOne(mappedBy = "location")
+    private Station station;
+
+    @OneToOne(mappedBy = "takeOffLocation")
+    private Route startRoute;
+
+    @OneToOne(mappedBy = "destination")
+    private Route destinationRoute;
 
 
 

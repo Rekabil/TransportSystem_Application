@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
-@Table(name = "public transport")
+@Table(name = "public_transport")
 
 public class PublicTransport {
     @Id
