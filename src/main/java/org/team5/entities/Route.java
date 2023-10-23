@@ -13,23 +13,48 @@ public class Route {
     @Id
     @GeneratedValue
     private UUID id;
-    /*private Location takeOffLocation;
-    private Location destination; */
+    private Location takeOffLocation;
+    private Location destination;
     private double averageArrivalTime;
 
     public Route() {
     }
 
-    public Route(double averageArrivalTime) {
+    public Route(Location takeOffLocation, Location destination, double averageArrivalTime) {
+        this.takeOffLocation = takeOffLocation;
+        this.destination = destination;
         this.averageArrivalTime = averageArrivalTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Route{" +
+                "id=" + id +
+                ", takeOffLocation=" + takeOffLocation +
+                ", destination=" + destination +
+                ", averageArrivalTime=" + averageArrivalTime +
+                '}';
     }
 
     public UUID getId() {
         return id;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+
+    public Location getTakeOffLocation() {
+        return takeOffLocation;
+    }
+
+    public void setTakeOffLocation(Location takeOffLocation) {
+        this.takeOffLocation = takeOffLocation;
+    }
+
+    public Location getDestination() {
+        return destination;
+    }
+
+    public void setDestination(Location destination) {
+        this.destination = destination;
     }
 
     public double getAverageArrivalTime() {
