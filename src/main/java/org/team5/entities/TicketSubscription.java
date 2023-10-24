@@ -10,8 +10,8 @@ public class TicketSubscription extends Ticket {
     @Enumerated(EnumType.STRING)
     private Period validation;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "user_id")
     private UserCard userCard;
     private LocalDate expiryDate;
 
@@ -21,12 +21,16 @@ public class TicketSubscription extends Ticket {
 
 
 
-    public TicketSubscription(int validity, LocalDate dateIssued, TicketVendor ticketVendor,
+    public TicketSubscription(LocalDate dateIssued, TicketVendor ticketVendor,
                               Period validation, UserCard userCard, LocalDate expiryDate) {
-        super(validity, dateIssued, ticketVendor);
+        super( dateIssued, ticketVendor);
         this.validation = validation;
         this.userCard = userCard;
         this.expiryDate = expiryDate;
+    }
+
+    public void setValidation(Period validation) {
+        this.validation = validation;
     }
 
     @Override
@@ -42,9 +46,6 @@ public class TicketSubscription extends Ticket {
         return validation;
     }
 
-    public void setValidation(Period validation) {
-        this.validation = validation;
-    }
 
     public UserCard getUserCard() {
         return userCard;
@@ -60,5 +61,17 @@ public class TicketSubscription extends Ticket {
 
     public void setExpiryDate(LocalDate expiryDate) {
         this.expiryDate = expiryDate;
+    }
+
+
+    public void setValidity() {
+
+
+        if(LocalDate.now().isAfter(this.getDateIssued()) || LocalDate.now().isEqual(this.getDateIssued()))
+        {
+            this.validity = TicketValidity.INVALID;
+        }else{
+            this.validity = TicketValidity.VALID;
+        }
     }
 }

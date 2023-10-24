@@ -20,9 +20,7 @@ public class TicketDAO {
 
         transaction.begin();
 
-
         em.persist(a);
-
 
         transaction.commit();
         System.out.println("Nuovo ticket salvato correttamente");

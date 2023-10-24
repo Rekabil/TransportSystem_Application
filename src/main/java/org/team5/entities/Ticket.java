@@ -1,5 +1,7 @@
 package org.team5.entities;
 
+import net.bytebuddy.asm.Advice;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -14,20 +16,25 @@ public class Ticket {
     @Id
     @GeneratedValue
     private UUID id;
-    private int validity;
+    @Enumerated(EnumType.STRING)
+    public TicketValidity validity;
     private LocalDate dateIssued;
 
     @ManyToOne
-    @JoinColumn(name = "ticketVendor_id", nullable = false)
+    @JoinColumn(name = "ticketVendor_id")
     private TicketVendor ticketVendor;
 
     public Ticket() {
     }
 
-    public Ticket(int validity, LocalDate dateIssued, TicketVendor ticketVendor) {
-        this.validity = validity;
+    public Ticket(LocalDate dateIssued, TicketVendor ticketVendor) {
         this.dateIssued = dateIssued;
+        setValidity();
         this.ticketVendor = ticketVendor;
+    }
+
+    private void setValidity() {
+        this.validity = TicketValidity.VALID;
     }
 
     @Override
@@ -43,13 +50,6 @@ public class Ticket {
         return id;
     }
 
-    public int getValidity() {
-        return validity;
-    }
-
-    public void setValidity(int validity) {
-        this.validity = validity;
-    }
 
     public LocalDate getDateIssued() {
         return dateIssued;
@@ -66,4 +66,7 @@ public class Ticket {
     public void setTicketVendor(TicketVendor ticketVendor) {
         this.ticketVendor = ticketVendor;
     }
+
+
+
 }

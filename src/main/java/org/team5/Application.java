@@ -74,12 +74,18 @@ public class Application {
        /* TicketMachine ticketVendor = new TicketMachine(l2, MachineStatus.OUT_OF_ORDER);
         ticketVendorDao.saveNewTicketVendor(ticketVendor);*/
 
+       TicketVendor oneTicket = ticketVendorDao.searchById(UUID.fromString("d02e33f5-0e2d-4c15-91cd-b967f31c1a88"));
+
+        Ticket ticket = new Ticket(LocalDate.now(), oneTicket);
+
+        ticketDAO.save(ticket);
+
 
         //User Card
 
 
         for (int i = 0; i < 50; i++) {
-            userCardDAO.save(user.get());
+            //userCardDAO.save(user.get());
         }
 
 
