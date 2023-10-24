@@ -53,7 +53,9 @@ public class StationDAO {
 
     public List<Station> filterStationByLocation(Location location)
     {
-        TypedQuery<Station> getNames = em.createNamedQuery("SELECT s.location FROM Station s", Station.class);
+        TypedQuery<Station> getNames = em.createNamedQuery("SELECT s.location FROM Station s WHERE s.location = :location",
+                Station.class);
+        getNames.setParameter("location", location);
         return getNames.getResultList();
     }
 }

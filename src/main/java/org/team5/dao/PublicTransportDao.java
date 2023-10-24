@@ -41,7 +41,7 @@ public class PublicTransportDao {
         }
     }
     public List<PublicTransport> showListPublicTransport(){
-        TypedQuery<PublicTransport> getListQuery = em.createQuery("SELECT p FROM PubblicTransport p", PublicTransport.class);
+        TypedQuery<PublicTransport> getListQuery = em.createQuery("SELECT p FROM PublicTransport p", PublicTransport.class);
         return getListQuery.getResultList();
     }
 }
