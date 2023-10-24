@@ -15,41 +15,58 @@ public class PublicTransport {
     private TransportStatus status;
     private LocalDate startDateStatus;
     private LocalDate endDateStatus;
+
+    private int capacity;
     @Enumerated(EnumType.STRING)
     private TypeOfTransport transportType;
 
     @ManyToOne
-    @JoinColumn(name = "route_id", nullable = false)
+    @JoinColumn(name = "route_id", nullable = true)
     private Route route;
 
     @ManyToOne
-    @JoinColumn(name = "publicTrans_id", nullable = false)
+    @JoinColumn(name = "publicTrans_id", nullable = true)
     private Station station;
 
 
     public PublicTransport() {
     }
 
-    public PublicTransport(TransportStatus status, LocalDate startDateStatus, LocalDate endDateStatus,
+    public PublicTransport(TransportStatus status, LocalDate startDateStatus, LocalDate endDateStatus, int capacity,
                            TypeOfTransport transportType) {
         this.status = status;
         this.startDateStatus = startDateStatus;
         this.endDateStatus = endDateStatus;
         this.transportType = transportType;
+        this.capacity = capacity;
     }
 
-    public Route getRoute() {
-        return route;
+    @Override
+    public String toString() {
+        return "PublicTransport{" +
+                "id=" + id +
+                ", status=" + status +
+                ", startDateStatus=" + startDateStatus +
+                ", endDateStatus=" + endDateStatus +
+                ", capacity=" + capacity +
+                ", transportType=" + transportType +
+                ", route=" + route +
+                ", station=" + station +
+                '}';
     }
+
 
     public void setRoute(Route route) {
         this.route = route;
     }
 
+    public void setStation(Station station) {
+        this.station = station;
+    }
+
     public UUID getId() {
         return id;
     }
-
 
     public TransportStatus getStatus() {
         return status;
@@ -82,4 +99,13 @@ public class PublicTransport {
     public void setTransportType(TypeOfTransport transportType) {
         this.transportType = transportType;
     }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
 }

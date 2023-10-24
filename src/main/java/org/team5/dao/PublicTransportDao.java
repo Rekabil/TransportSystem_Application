@@ -1,6 +1,7 @@
 package org.team5.dao;
 
 import org.team5.entities.PublicTransport;
+import org.team5.entities.Route;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -43,5 +44,15 @@ public class PublicTransportDao {
     public List<PublicTransport> showListPublicTransport(){
         TypedQuery<PublicTransport> getListQuery = em.createQuery("SELECT p FROM PublicTransport p", PublicTransport.class);
         return getListQuery.getResultList();
+    }
+
+    public void setRoute(PublicTransport pb, Route r)
+    {
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        pb.setRoute(r);
+        transaction.commit();
+        System.out.println("Route changed");
+
     }
 }
