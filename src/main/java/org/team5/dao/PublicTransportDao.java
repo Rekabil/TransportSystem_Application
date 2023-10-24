@@ -2,6 +2,7 @@ package org.team5.dao;
 
 import org.team5.entities.PublicTransport;
 import org.team5.entities.Route;
+import org.team5.entities.Station;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -53,6 +54,14 @@ public class PublicTransportDao {
         pb.setRoute(r);
         transaction.commit();
         System.out.println("Route changed");
+
+    } public void setStation(PublicTransport pb, Station s)
+    {
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        pb.setStation(s);
+        transaction.commit();
+        System.out.println("Station changed");
 
     }
 }
