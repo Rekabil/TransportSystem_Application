@@ -21,7 +21,7 @@ public class PublicTransportDao {
         transaction.begin();
         em.persist(p);
         transaction.commit();
-        System.out.println("Nuovo mezzo pubblico aggiunto a database");
+        System.out.println("New public transport add in Database");
     }
     public PublicTransport searchById(UUID id) {
         return em.find(PublicTransport.class,id);
@@ -34,10 +34,10 @@ public class PublicTransportDao {
             transaction.begin();
             em.remove(a);
             transaction.commit();
-            System.out.println("Mezzo pubblico rimosso con successo");
+            System.out.println("public transport removed");
         }catch (Exception ex) {
             System.err.println(ex.getMessage());
-            System.err.println("Il mezzo con id " + id + " non esiste");
+            System.err.println("public transport with id " + id + " don't exist");
         }
     }
     public List<PublicTransport> showListPublicTransport(){

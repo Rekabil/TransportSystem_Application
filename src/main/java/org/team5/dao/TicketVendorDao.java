@@ -21,7 +21,7 @@ public class TicketVendorDao {
         transaction.begin();
         em.persist(t);
         transaction.commit();
-        System.out.println("Nuovo rivenditore aggiunto a database");
+        System.out.println("New ticket vendor add in Database");
     }
     public TicketVendor searchById(UUID id) {
         return em.find(TicketVendor.class,id);
@@ -34,10 +34,10 @@ public class TicketVendorDao {
             transaction.begin();
             em.remove(a);
             transaction.commit();
-            System.out.println("Rivenditore rimosso con successo");
+            System.out.println("ticket vendor removed");
         }catch (Exception ex) {
             System.err.println(ex.getMessage());
-            System.err.println("Il rivenditore con id " + id + " non esiste");
+            System.err.println("ticket vendor with id " + id + " don't exist");
         }
     }
     public List<TicketVendor> showListTicketVendor(){
