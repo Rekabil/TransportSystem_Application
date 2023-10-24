@@ -13,6 +13,12 @@ public class Application {
 
         EntityManager em = emf.createEntityManager();
 
+        try{
+
+        }catch (Exception ex)
+        {
+            System.err.println(ex.getMessage());
+        }
 
 
 
