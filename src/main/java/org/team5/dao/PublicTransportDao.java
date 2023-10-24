@@ -16,10 +16,10 @@ public class PublicTransportDao {
     }
 
 
-    public void saveNewPublicTransport(PublicTransport e) {
+    public void saveNewPublicTransport(PublicTransport p) {
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
-        em.persist(e);
+        em.persist(p);
         transaction.commit();
         System.out.println("Nuovo mezzo pubblico aggiunto a database");
     }
