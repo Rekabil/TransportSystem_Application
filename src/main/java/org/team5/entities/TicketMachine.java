@@ -7,6 +7,7 @@ import java.util.UUID;
 @DiscriminatorValue("ticket_dispatcher")
 public class TicketMachine extends TicketVendor {
 
+    @Enumerated(EnumType.STRING)
     private MachineStatus machineStatus;
     public TicketMachine() {
     }

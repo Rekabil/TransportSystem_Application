@@ -2,6 +2,8 @@ package org.team5.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -23,12 +25,12 @@ public class UserCard {
     public UserCard() {
     }
 
-    public UserCard(String name, String surname, LocalDate dateOfBirth, LocalDate dateRenewed, LocalDate cardExpiryDate) {
+    public UserCard(String name, String surname, Date dateOfBirth, Date dateRenewed) {
         this.name = name;
         this.surname = surname;
-        this.dateOfBirth = dateOfBirth;
-        this.dateRenewed = dateRenewed;
-        this.cardExpiryDate = cardExpiryDate;
+        this.dateOfBirth = dateOfBirth.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.dateRenewed = dateRenewed.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.cardExpiryDate = dateRenewed.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().plusYears(1);
     }
 
     @Override

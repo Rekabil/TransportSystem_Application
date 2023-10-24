@@ -7,6 +7,7 @@ import org.team5.entities.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 import java.util.function.Supplier;
@@ -31,12 +32,14 @@ public class Application {
 
         //Location location = new Location();
         Supplier<Location> location1 = () -> new Location(faker.address().cityName(), faker.address().streetName());
+        Supplier<UserCard> user = () -> new UserCard(faker.name().firstName(), faker.name().lastName(), faker.date().birthday(),
+                faker.date().between(new Date(115, 1, 1), new Date(124, 4, 1)));
 
 
 
-       Location l1 = locDAO.findById(UUID.fromString("231d11a0-aed6-456e-a886-5e77ebf23d34"));
+       /* Location l1 = locDAO.findById(UUID.fromString("231d11a0-aed6-456e-a886-5e77ebf23d34"));
       Location l2 = locDAO.findById(UUID.fromString("24fc9374-5e1d-4825-9d55-94d4782c414c"));
-      /*  Location l3 = locDAO.findById(UUID.fromString("2d72a2ae-550e-4833-a054-e0e7a89d79e2"));
+       Location l3 = locDAO.findById(UUID.fromString("2d72a2ae-550e-4833-a054-e0e7a89d79e2"));
        Location l4 = locDAO.findById(UUID.fromString("4c26a837-52e2-4129-a19d-f2979be2e694"));*/
 
       /*  Route route1 = new Route(l1, l2, 44.5);
@@ -45,7 +48,7 @@ public class Application {
         routeDAO.save(route1);
         routeDAO.save(route2);*/
 
-        PublicTransport publicTransport = new PublicTransport(TransportStatus.INSERVICE, LocalDate.of(2023, 1, 1),
+       /* PublicTransport publicTransport = new PublicTransport(TransportStatus.INSERVICE, LocalDate.of(2023, 1, 1),
                 LocalDate.of(2023, 2, 2), 48, TypeOfTransport.BUS);
 
         PublicTransport publicTransport2 = new PublicTransport(TransportStatus.OUT_OF_SERVICE, LocalDate.of(2022, 3, 5),
@@ -56,15 +59,32 @@ public class Application {
 
         PublicTransport found = publicTransportDao.searchById(UUID.fromString("e04595e7-20bb-4f31-85e1-35b430533928"));
 
-        PublicTransport found2 = publicTransportDao.searchById(UUID.fromString("ffc89f45-5eb8-4ebe-ab34-da058d15d6c2"));
+        PublicTransport found2 = publicTransportDao.searchById(UUID.fromString("ffc89f45-5eb8-4ebe-ab34-da058d15d6c2"));*/
 
         //station
         //Station station1 = new Station(l1);
         //stationDAO.save(station1);
 
-        Station stationFound = stationDAO.findStationById(UUID.fromString("f87326e2-e513-43bb-9d48-f62753428da8"));
+        //Station stationFound = stationDAO.findStationById(UUID.fromString("f87326e2-e513-43bb-9d48-f62753428da8"));
         //publicTransportDao.setStation(found, stationFound);
-        publicTransportDao.setStation(found2, stationFound);
+        //publicTransportDao.setStation(found2, stationFound);
+
+
+
+       /* TicketMachine ticketVendor = new TicketMachine(l2, MachineStatus.OUT_OF_ORDER);
+        ticketVendorDao.saveNewTicketVendor(ticketVendor);*/
+
+
+        //User Card
+
+
+        for (int i = 0; i < 50; i++) {
+            userCardDAO.save(user.get());
+        }
+
+
+
+
 
 
 
