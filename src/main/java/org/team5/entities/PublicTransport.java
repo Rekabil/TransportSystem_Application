@@ -26,7 +26,7 @@ public class PublicTransport {
     private Route route;
 
     @ManyToOne
-    @JoinColumn(name = "publicTrans_id", nullable = true)
+    @JoinColumn(name = "station_id", nullable = true)
     private Station station;
 
     @OneToMany(mappedBy = "publicTransport")

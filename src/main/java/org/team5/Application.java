@@ -48,37 +48,48 @@ public class Application {
         routeDAO.save(route1);
         routeDAO.save(route2);*/
 
-       /* PublicTransport publicTransport = new PublicTransport(TransportStatus.INSERVICE, LocalDate.of(2023, 1, 1),
+        /*PublicTransport publicTransport = new PublicTransport(TransportStatus.INSERVICE, LocalDate.of(2023, 1, 1),
                 LocalDate.of(2023, 2, 2), 48, TypeOfTransport.BUS);
 
         PublicTransport publicTransport2 = new PublicTransport(TransportStatus.OUT_OF_SERVICE, LocalDate.of(2022, 3, 5),
                 LocalDate.of(2023, 6, 2), 52, TypeOfTransport.TRAM);
 
-        Route foundRoute1 = routeDAO.findById(UUID.fromString("15703002-5eeb-4fb6-8bc5-ad524fc8c3d7"));
+        publicTransportDao.saveNewPublicTransport(publicTransport);
+        publicTransportDao.saveNewPublicTransport(publicTransport2);*/
+
+        /*Route foundRoute1 = routeDAO.findById(UUID.fromString("15703002-5eeb-4fb6-8bc5-ad524fc8c3d7"));
         Route foundRoute2 = routeDAO.findById(UUID.fromString("7f952af9-4f49-42a1-aeba-7c6ba0dd7c3a"));
 
-        PublicTransport found = publicTransportDao.searchById(UUID.fromString("e04595e7-20bb-4f31-85e1-35b430533928"));
 
-        PublicTransport found2 = publicTransportDao.searchById(UUID.fromString("ffc89f45-5eb8-4ebe-ab34-da058d15d6c2"));*/
+
+        PublicTransport found = publicTransportDao.searchById(UUID.fromString("ee02a929-7334-4faf-bb8c-caeefd85b102"));
+
+        PublicTransport found2 = publicTransportDao.searchById(UUID.fromString("f461628f-ff85-4273-b6b1-af3c80a6617f"));
+
+        publicTransportDao.setRoute(found, foundRoute1);
+        publicTransportDao.setRoute(found2, foundRoute2); */
+
+
+
 
         //station
         //Station station1 = new Station(l1);
         //stationDAO.save(station1);
 
-        //Station stationFound = stationDAO.findStationById(UUID.fromString("f87326e2-e513-43bb-9d48-f62753428da8"));
-        //publicTransportDao.setStation(found, stationFound);
-        //publicTransportDao.setStation(found2, stationFound);
+        /*Station stationFound = stationDAO.findStationById(UUID.fromString("f87326e2-e513-43bb-9d48-f62753428da8"));
+        publicTransportDao.setStation(found, stationFound);
+        publicTransportDao.setStation(found2, stationFound);*/
 
 
 
        /* TicketMachine ticketVendor = new TicketMachine(l2, MachineStatus.OUT_OF_ORDER);
         ticketVendorDao.saveNewTicketVendor(ticketVendor);*/
 
-       TicketVendor oneTicket = ticketVendorDao.searchById(UUID.fromString("d02e33f5-0e2d-4c15-91cd-b967f31c1a88"));
+      /* TicketVendor oneTicket = ticketVendorDao.searchById(UUID.fromString("d02e33f5-0e2d-4c15-91cd-b967f31c1a88"));
 
         Ticket ticket = new Ticket(LocalDate.now(), oneTicket);
 
-        ticketDAO.save(ticket);
+        ticketDAO.save(ticket);*/
 
 
         //User Card
