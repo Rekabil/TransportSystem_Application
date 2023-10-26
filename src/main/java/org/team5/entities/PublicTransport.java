@@ -2,6 +2,7 @@ package org.team5.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -28,7 +29,8 @@ public class PublicTransport {
     @JoinColumn(name = "publicTrans_id", nullable = true)
     private Station station;
 
-
+    @OneToMany(mappedBy = "publicTransport")
+    private List<Ticket> ticketList;
 
 
     public PublicTransport() {
@@ -110,4 +112,11 @@ public class PublicTransport {
         this.capacity = capacity;
     }
 
+    public List<Ticket> getTicketList() {
+        return ticketList;
+    }
+
+    public void setTicketList(List<Ticket> ticketList) {
+        this.ticketList = ticketList;
+    }
 }

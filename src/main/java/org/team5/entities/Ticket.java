@@ -24,6 +24,10 @@ public class Ticket {
     @JoinColumn(name = "ticketVendor_id")
     private TicketVendor ticketVendor;
 
+    @ManyToOne
+    @JoinColumn(name = "publicTransport_id")
+    private PublicTransport publicTransport;
+
     public Ticket() {
     }
 
