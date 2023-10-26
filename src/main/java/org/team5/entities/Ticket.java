@@ -67,6 +67,7 @@ public class Ticket {
         this.ticketVendor = ticketVendor;
     }
 
-
-
+    public TicketValidity getValidity() {
+        return validity;
+    }
 }
