@@ -8,7 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class TicketVendorDao {
@@ -46,10 +48,25 @@ public class TicketVendorDao {
         TypedQuery<TicketVendor> getListQuery = em.createQuery("SELECT t FROM TicketVendor t", TicketVendor.class);
         return getListQuery.getResultList();
     }
-    public List<Ticket> getTicketsByRangeDate(LocalDate d1, LocalDate d2){
-        TypedQuery<Ticket> getTicketsQuery= em.createQuery("SELECT tv.ticket FROM TicketVendor tv JOIN Ticket t WHERE t.dateIssued BETWEEN :d1 AND :d2", Ticket.class);
-        getTicketsQuery.setParameter("d1", d1);
-        getTicketsQuery.setParameter("d2", d2);
-        return getTicketsQuery.getResultList();
+    public Map<TicketVendor, List<Ticket>> getTicketsByRangeDate(LocalDate d1, LocalDate d2) {
+        TypedQuery<TicketVendor> vendorQuery = em.createQuery("SELECT tv FROM TicketVendor tv", TicketVendor.class);
+        List<TicketVendor> vendors = vendorQuery.getResultList();
+
+        Map<TicketVendor, List<Ticket>> ticketVendorMap = new HashMap<>();
+
+        for (TicketVendor vendor : vendors) {
+            TypedQuery<Ticket> getTicketsQuery = em.createQuery(
+                    "SELECT t FROM Ticket t WHERE t.dateIssued BETWEEN :d1 AND :d2 AND t.ticketVendor = :vendor",
+                    Ticket.class
+            );
+            getTicketsQuery.setParameter("d1", d1);
+            getTicketsQuery.setParameter("d2", d2);
+            getTicketsQuery.setParameter("vendor", vendor);
+
+            List<Ticket> tickets = getTicketsQuery.getResultList();
+            ticketVendorMap.put(vendor, tickets);
+        }
+
+        return ticketVendorMap;
     }
 }
