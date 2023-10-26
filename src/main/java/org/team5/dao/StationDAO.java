@@ -1,6 +1,7 @@
 package org.team5.dao;
 
 import org.team5.entities.Location;
+import org.team5.entities.PublicTransport;
 import org.team5.entities.Route;
 import org.team5.entities.Station;
 
@@ -57,5 +58,12 @@ public class StationDAO {
                 Station.class);
         getNames.setParameter("location", location);
         return getNames.getResultList();
+    }
+
+    public List<PublicTransport> checkMezzi(UUID id)
+    {
+        TypedQuery<PublicTransport> confirmName = em.createNamedQuery("SELECT p FROM Station s JOIN s.publicTransport p WHERE s.id = :id", PublicTransport.class);
+        confirmName.setParameter("id", id);
+        return confirmName.getResultList();
     }
 }
