@@ -38,11 +38,11 @@ public class Application {
 
 
 
-        //TicketVendor oneTicket = ticketVendorDao.searchById(UUID.fromString("05e50b86-47a7-4e2f-8e87-3236d880bda2"));
-
-        //Ticket ticket1 = new Ticket(LocalDate.now(), oneTicket);
-
-        //ticketDAO.save(ticket);
+//        TicketVendor oneTicket = ticketVendorDao.searchById(UUID.fromString("6409ccf7-7e00-4c33-b68f-bd80b0d639f3"));
+//
+//        Ticket ticket1 = new Ticket(LocalDate.now(), oneTicket);
+//
+//        ticketDAO.save(ticket1);
 
        /*Location l1 = locDAO.findById(UUID.fromString("06ea7cdf-9909-4a42-87d1-fa30ee07c44e"));
       Location l2 = locDAO.findById(UUID.fromString("abfc3810-d6c9-4c7b-842f-ec80ab9acf59"));
@@ -82,9 +82,9 @@ public class Application {
         publicTransportDao.setRoute(found2,foundRoute2);*/
 
     try{
+ticketVendorDao.getTicketsByRangeDate(LocalDate.now().minusMonths(50), LocalDate.now()).forEach((map, help) -> System.out.println(map + " " + help));
 
-
-        Scan.start();
+        //Scan.start();
 
 
         }catch (Exception ex)
