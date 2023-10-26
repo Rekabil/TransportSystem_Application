@@ -22,7 +22,7 @@ public class RouteDAO {
         em.persist(route);
 
         transaction.commit();
-        System.out.println("New Location Added");
+        System.out.println("New Route Added");
     }
     public Route findById(UUID id) {
         return em.find(Route.class, id);
@@ -51,5 +51,7 @@ public List<Route> findByTakeOff(Location location) {
         getRoute.setParameter("destination", location);
         return getRoute.getResultList();
     }
+
+
 
 }
