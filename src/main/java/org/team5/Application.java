@@ -3,6 +3,7 @@ package org.team5;
 import com.github.javafaker.Faker;
 import org.team5.dao.*;
 import org.team5.entities.*;
+import org.team5.functions.Scan;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -31,15 +32,15 @@ public class Application {
 
 
         //Location location = new Location();
-        Supplier<Location> location1 = () -> new Location(faker.address().cityName(), faker.address().streetName());
-        Supplier<UserCard> user = () -> new UserCard(faker.name().firstName(), faker.name().lastName(), faker.date().birthday(),
-                faker.date().between(new Date(115, 0, 1), new Date(124, 4, 1)));
+      //  Supplier<Location> location1 = () -> new Location(faker.address().cityName(), faker.address().streetName());
+      //  Supplier<UserCard> user = () -> new UserCard(faker.name().firstName(), faker.name().lastName(), faker.date().birthday(),
+//faker.date().between(new Date(115, 0, 1), new Date(124, 4, 1)));
 
 
 
-        TicketVendor oneTicket = ticketVendorDao.searchById(UUID.fromString("d02e33f5-0e2d-4c15-91cd-b967f31c1a88"));
+        //TicketVendor oneTicket = ticketVendorDao.searchById(UUID.fromString("05e50b86-47a7-4e2f-8e87-3236d880bda2"));
 
-        Ticket ticket1 = new Ticket(LocalDate.now(), oneTicket);
+        //Ticket ticket1 = new Ticket(LocalDate.now(), oneTicket);
 
         //ticketDAO.save(ticket);
 
@@ -50,11 +51,11 @@ public class Application {
 
 
 
-        TicketSubscription ticket = new TicketSubscription(LocalDate.of(2020, 7, 2), oneTicket,
-                Period.MONTHLY, userCardDAO.findElementById(UUID.fromString("6c92a86e-32d1-4278-bfb7-9370d828fb35")));
+       //TicketSubscription ticket = new TicketSubscription(LocalDate.of(2020, 7, 2), oneTicket,
+        //        Period.MONTHLY, userCardDAO.findElementById(UUID.fromString("05aae67e-c692-4034-91d8-b2158a332c01")));
 
 
-        //ticketDAO.save(ticket);
+       // ticketDAO.save(ticket);
 
         //System.out.println(userCardDAO.isSubscritionValid(UUID.fromString("6c92a86e-32d1-4278-bfb7-9370d828fb35")));
 
@@ -64,28 +65,13 @@ public class Application {
 
         //System.out.println(ticketDAO.getTicketsByRangeDate(LocalDate.now().minusMonths(6), LocalDate.now()));
 
-
-
-
-
-
-
         //User Card
 
 
-        for (int i = 0; i < 50; i++) {
+       // for (int i = 0; i < 50; i++) {
            // locDAO.save(location1.get());
            // userCardDAO.save(user.get());
-        }
-
-
-
-
-
-
-
-
-
+      //  }
 
        /* publicTransportDao.saveNewPublicTransport(publicTransport);
         publicTransportDao.saveNewPublicTransport(publicTransport2);*/
@@ -95,11 +81,10 @@ public class Application {
         /*publicTransportDao.setRoute(found, foundRoute1);
         publicTransportDao.setRoute(found2,foundRoute2);*/
 
+    try{
 
 
-
-        try{
-
+        Scan.start();
 
 
         }catch (Exception ex)

@@ -1,12 +1,14 @@
 package org.team5.dao;
 
 import org.team5.entities.Ticket;
+import org.team5.entities.TicketValidity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 public class TicketDAO {
     private final EntityManager em;
@@ -27,13 +29,13 @@ public class TicketDAO {
         System.out.println("Nuovo ticket salvato correttamente");
     }
 
-    public Ticket findElementById(long id) {
+    public Ticket findElementById(UUID id) {
         if (em.find(Ticket.class, id) == null) throw new RuntimeException("id ticket non esistente");
         else return em.find(Ticket.class, id
         );
     }
 
-    public void findByIdAndDelete(long id) {
+    public void findByIdAndDelete(UUID id) {
         // 1. Faccio una find per cercare lo studente
         Ticket found = em.find(Ticket.class, id);
 
@@ -67,5 +69,23 @@ public class TicketDAO {
         return getTicketsQuery.getResultList();
     }
 
+    public void validateTicket(UUID id, UUID transId) {
+        Ticket ticket;
+        EntityTransaction transaction = em.getTransaction();
+    PublicTransportDao ptDao = new PublicTransportDao(em);
+
+        if (em.find(Ticket.class, id) == null) throw new RuntimeException("id ticket non esistente");
+        else ticket = em.find(Ticket.class, id);
+
+        if (ticket.getValidity() == TicketValidity.VALID) {
+            transaction.begin();
+            ticket.timbra();
+            ticket.setExpiryDate();
+            ticket.setPublicTransport(ptDao.searchById(transId));
+            transaction.commit();
+            System.out.println("Ticket with ID: " + id + ", has been VALIDATED");
+        } else System.out.println("Invalid Ticket");
+
+    }
 
 }
