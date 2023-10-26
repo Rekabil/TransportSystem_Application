@@ -88,4 +88,8 @@ public class UserCard {
     public void setCardExpiryDate(LocalDate cardExpiryDate) {
         this.cardExpiryDate = cardExpiryDate;
     }
+
+    public TicketSubscription getTicketSubscription() {
+        return ticketSubscription;
+    }
 }

@@ -46,7 +46,7 @@ public class TicketDAO {
             em.remove(found);
 
             transaction.commit();
-            System.out.println("Il toket  è stato cancellato correttamente");
+            System.out.println("Il ticket  è stato cancellato correttamente");
         } else {
 
             System.err.println("Lo studente con l'id " + id + " non è stato trovato");
