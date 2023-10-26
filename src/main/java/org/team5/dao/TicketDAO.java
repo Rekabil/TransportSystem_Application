@@ -5,6 +5,7 @@ import org.team5.entities.Ticket;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
+import java.time.LocalDate;
 import java.util.List;
 
 public class TicketDAO {
@@ -59,6 +60,12 @@ public class TicketDAO {
         return getAllQuery.getResultList();
     }
 
+    public List<Ticket> getTicketsByRangeDate(LocalDate d1, LocalDate d2){
+        TypedQuery<Ticket> getTicketsQuery= em.createQuery("SELECT t FROM Ticket t WHERE t.dateIssued BETWEEN :d1 AND :d2", Ticket.class);
+        getTicketsQuery.setParameter("d1", d1);
+        getTicketsQuery.setParameter("d2", d2);
+        return getTicketsQuery.getResultList();
+    }
 
 
 }

@@ -22,11 +22,12 @@ public class TicketSubscription extends Ticket {
 
 
     public TicketSubscription(LocalDate dateIssued, TicketVendor ticketVendor,
-                              Period validation, UserCard userCard, LocalDate expiryDate) {
+                              Period validation, UserCard userCard) {
         super( dateIssued, ticketVendor);
         this.validation = validation;
         this.userCard = userCard;
-        this.expiryDate = expiryDate;
+        this.setExpiryDate();
+
     }
 
     public void setValidation(Period validation) {
@@ -59,8 +60,12 @@ public class TicketSubscription extends Ticket {
         return expiryDate;
     }
 
-    public void setExpiryDate(LocalDate expiryDate) {
-        this.expiryDate = expiryDate;
+    public void setExpiryDate() {
+        if(this.validation == Period.WEEKLY ){
+            this.expiryDate = getDateIssued().plusDays(7);
+        }else{
+            this.expiryDate = getDateIssued().plusMonths(1);
+        }
     }
 
 

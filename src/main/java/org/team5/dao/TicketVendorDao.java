@@ -46,10 +46,5 @@ public class TicketVendorDao {
         TypedQuery<TicketVendor> getListQuery = em.createQuery("SELECT t FROM TicketVendor t", TicketVendor.class);
         return getListQuery.getResultList();
     }
-    public List<Ticket> getTicketsByRangeDate(LocalDate d1, LocalDate d2){
-        TypedQuery<Ticket> getTicketsQuery= em.createQuery("SELECT tv.ticket FROM TicketVendor tv JOIN Ticket t WHERE t.dateIssued BETWEEN :d1 AND :d2", Ticket.class);
-        getTicketsQuery.setParameter("d1", d1);
-        getTicketsQuery.setParameter("d2", d2);
-        return getTicketsQuery.getResultList();
-    }
+
 }

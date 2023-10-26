@@ -64,12 +64,12 @@ public class PublicTransportDao {
         System.out.println("Station changed");
 
     }
-    public List<PublicTransport> getInserviceTransports(){
-        TypedQuery<PublicTransport> InserviceTransportQuery = em.createQuery("SELECT p FROM PublicTransport p WHERE p.status = INSERVICE", PublicTransport.class);
-        return InserviceTransportQuery.getResultList();
+    public List<PublicTransport> getInServiceTransports(){
+        TypedQuery<PublicTransport> inserviceTransportQuery = em.createQuery("SELECT p FROM PublicTransport p WHERE p.status = 'INSERVICE'", PublicTransport.class);
+        return inserviceTransportQuery.getResultList();
     }
     public List<PublicTransport> getOutOfServiceTransports(){
-        TypedQuery<PublicTransport> outOfServiceTransportQuery = em.createQuery("SELECT p FROM PublicTransport p WHERE p.status = OUT_OF_SERVICE", PublicTransport.class);
+        TypedQuery<PublicTransport> outOfServiceTransportQuery = em.createQuery("SELECT p FROM PublicTransport p WHERE p.status = 'OUT_OF_SERVICE'", PublicTransport.class);
         return outOfServiceTransportQuery.getResultList();
     }
 }

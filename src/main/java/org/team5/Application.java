@@ -37,92 +37,36 @@ public class Application {
 
 
 
-       Location l1 = locDAO.findById(UUID.fromString("06ea7cdf-9909-4a42-87d1-fa30ee07c44e"));
+        TicketVendor oneTicket = ticketVendorDao.searchById(UUID.fromString("d02e33f5-0e2d-4c15-91cd-b967f31c1a88"));
+
+        Ticket ticket1 = new Ticket(LocalDate.now(), oneTicket);
+
+        //ticketDAO.save(ticket);
+
+       /*Location l1 = locDAO.findById(UUID.fromString("06ea7cdf-9909-4a42-87d1-fa30ee07c44e"));
       Location l2 = locDAO.findById(UUID.fromString("abfc3810-d6c9-4c7b-842f-ec80ab9acf59"));
        Location l3 = locDAO.findById(UUID.fromString("402fa7cc-f158-47f8-acc4-82f3aeabbb15"));
-       Location l4 = locDAO.findById(UUID.fromString("ebde4f5b-47d2-4594-ac65-d4821113bcb1"));
-//
-//      Route route1 = new Route(l1, l2, 44.5);
-//        Route route2 = new Route(l3, l4, 36.5);
-//
-//        routeDAO.save(route1);
-//        routeDAO.save(route2);
-
-//        PublicTransport publicTransport = new PublicTransport(TransportStatus.INSERVICE, LocalDate.of(2023, 1, 1),
-//                LocalDate.of(2023, 2, 2), 48, TypeOfTransport.BUS);
-//
-//        PublicTransport publicTransport2 = new PublicTransport(TransportStatus.OUT_OF_SERVICE, LocalDate.of(2022, 3, 5),
-//                LocalDate.of(2023, 6, 2), 52, TypeOfTransport.TRAM);
-//
-//publicTransportDao.saveNewPublicTransport(publicTransport);
-//publicTransportDao.saveNewPublicTransport(publicTransport2);
-
-//        Route foundRoute1 = routeDAO.findById(UUID.fromString("bab959ab-000a-45c8-a713-749ee5428be5"));
-//        Route foundRoute2 = routeDAO.findById(UUID.fromString("b579531a-5d81-4d31-bd9a-a24bec8da2b7"));
-
-
-        /*PublicTransport publicTransport = new PublicTransport(TransportStatus.INSERVICE, LocalDate.of(2023, 1, 1),
-                LocalDate.of(2023, 2, 2), 48, TypeOfTransport.BUS);
-
-       PublicTransport found = publicTransportDao.searchById(UUID.fromString("0c00aaaa-ddcd-4af1-b9b8-578d890c70ab"));
-       PublicTransport found2 = publicTransportDao.searchById(UUID.fromString("ec37ed05-59f6-42a0-958d-b580bda970aa"));
-
-
-//       publicTransportDao.setRoute(found2, foundRoute2);
-
-
-        publicTransportDao.saveNewPublicTransport(publicTransport);
-        publicTransportDao.saveNewPublicTransport(publicTransport2);*/
-
-        /*Route foundRoute1 = routeDAO.findById(UUID.fromString("15703002-5eeb-4fb6-8bc5-ad524fc8c3d7"));
-        Route foundRoute2 = routeDAO.findById(UUID.fromString("7f952af9-4f49-42a1-aeba-7c6ba0dd7c3a"));
+       Location l4 = locDAO.findById(UUID.fromString("ebde4f5b-47d2-4594-ac65-d4821113bcb1"));*/
 
 
 
-        PublicTransport found = publicTransportDao.searchById(UUID.fromString("ee02a929-7334-4faf-bb8c-caeefd85b102"));
+        TicketSubscription ticket = new TicketSubscription(LocalDate.of(2020, 7, 2), oneTicket,
+                Period.MONTHLY, userCardDAO.findElementById(UUID.fromString("6c92a86e-32d1-4278-bfb7-9370d828fb35")));
 
-        PublicTransport found2 = publicTransportDao.searchById(UUID.fromString("f461628f-ff85-4273-b6b1-af3c80a6617f"));
 
-        publicTransportDao.setRoute(found, foundRoute1);
-        publicTransportDao.setRoute(found2, foundRoute2); */
+        //ticketDAO.save(ticket);
+
+        //System.out.println(userCardDAO.isSubscritionValid(UUID.fromString("6c92a86e-32d1-4278-bfb7-9370d828fb35")));
+
+       /* System.out.println(publicTransportDao.getInServiceTransports());
+        System.out.println("-----------------------");
+        System.out.println(publicTransportDao.getInServiceTransports());*/
+
+        //System.out.println(ticketDAO.getTicketsByRangeDate(LocalDate.now().minusMonths(6), LocalDate.now()));
 
 
 
 
-        //station
-        //Station station1 = new Station(l1);
-        //stationDAO.save(station1);
-
-        /*Station stationFound = stationDAO.findStationById(UUID.fromString("f87326e2-e513-43bb-9d48-f62753428da8"));
-        publicTransportDao.setStation(found, stationFound);
-        publicTransportDao.setStation(found2, stationFound);*/
-
-
-//        Station station1 = new Station(l2);
-//        stationDAO.save(station1);
-
-//        Station stationFound = stationDAO.findStationById(UUID.fromString("b7f2ee61-7fc7-44ed-89de-ee79e3a0196d"));
-//        publicTransportDao.setStation(found, stationFound);
-//        publicTransportDao.setStation(found2, stationFound);
-
-
-
-
-//       TicketVendor ticketVendor = new TicketVendor(l4);
-//        ticketVendorDao.saveNewTicketVendor(ticketVendor);
-
-
-      /* TicketVendor oneTicket = ticketVendorDao.searchById(UUID.fromString("d02e33f5-0e2d-4c15-91cd-b967f31c1a88"));
-
-        Ticket ticket = new Ticket(LocalDate.now(), oneTicket);
-
-        ticketDAO.save(ticket);*/
-
-//       TicketVendor oneTicket = ticketVendorDao.searchById(UUID.fromString("05e50b86-47a7-4e2f-8e87-3236d880bda2"));
-//
-//        Ticket ticket = new Ticket(LocalDate.now(), oneTicket);
-//
-//        ticketDAO.save(ticket);
 
 
 
@@ -155,10 +99,6 @@ public class Application {
 
 
         try{
-
-            for (int i = 0; i < 20; i++) {
-                //locDAO.save(location1.get());
-            }
 
 
 
