@@ -81,7 +81,7 @@ while (choice != 0) {
         if (choice < 0 || choice > 7) throw new RuntimeException("Choice Dosen't Exist!");
         switch (choice) {
             case 1:
-TicketsSold.TicketSold();
+                    TicketsSold.TicketSold();
             case 2:
                 while (true) {
                     try {
