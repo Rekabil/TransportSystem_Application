@@ -32,8 +32,8 @@ public class TicketSubscription extends Ticket {
     public String toString() {
         return "TicketSubscription{" +
                 "validation=" + validation +
-                ", userCard=" + userCard +
-                '}';
+                ", userCard=" + userCard.getId() +
+                '}' + super.toString();
     }
 
     public Period getValidation() {
@@ -47,10 +47,6 @@ public class TicketSubscription extends Ticket {
 
     public void setUserCard(UserCard userCard) {
         this.userCard = userCard;
-    }
-
-    public LocalDate getExpiryDate() {
-        return expiryDate;
     }
 
     @Override

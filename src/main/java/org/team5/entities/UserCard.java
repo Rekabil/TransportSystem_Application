@@ -33,7 +33,13 @@ public class UserCard {
         this.cardExpiryDate = dateRenewed.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().plusYears(1);
     }
 
-
+    public UserCard( String name, String surname, LocalDate dateOfBirth, LocalDate dateRenewed) {
+        this.name = name;
+        this.surname = surname;
+        this.dateOfBirth = dateOfBirth;
+        this.dateRenewed = dateRenewed;
+        this.cardExpiryDate = dateRenewed.plusYears(1);
+    }
 
     @Override
     public String toString() {

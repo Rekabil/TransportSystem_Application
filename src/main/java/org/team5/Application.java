@@ -82,9 +82,8 @@ public class Application {
         publicTransportDao.setRoute(found2,foundRoute2);*/
 
     try{
-ticketVendorDao.getTicketsByRangeDate(LocalDate.now().minusMonths(50), LocalDate.now()).forEach((map, help) -> System.out.println(map + " " + help));
 
-        //Scan.start();
+        Scan.start();
 
 
         }catch (Exception ex)

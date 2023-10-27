@@ -26,7 +26,7 @@ public class Ticket {
     @JoinColumn(name = "publicTransport_id")
     private PublicTransport publicTransport;
 
-    LocalDate expiryDate;
+     LocalDate expiryDate;
     public Ticket() {
     }
 
@@ -46,7 +46,6 @@ public class Ticket {
         return "Ticket{" +
                 "validity=" + validity +
                 ", dateIssued=" + dateIssued +
-                ", ticketVendor=" + ticketVendor +
                 '}';
     }
 
