@@ -192,109 +192,98 @@ public class Scan {
         StationDAO stationDAO = new StationDAO(em);
 
 
-Scanner input = new Scanner(System.in);
-int choice = 1;
+        Scanner input = new Scanner(System.in);
+        int choice = 1;
 
-admin:
-while (choice != 0) {
-    System.out.println("Welcome Admin");
-    System.out.println("What Would You Like To Do Today?");
-    System.out.println("1. Check Tickets Sold In The Last 6 Months For Each Vendor.");
-    System.out.println("2. Control Subscription Validity.");
-    System.out.println("3. Validate Ticket.");
-    System.out.println("4. Check Tickets Validated In The Last 6 Months On Specific Bus/Tram.");
-    System.out.println("5. Vehicle Info.");
-    System.out.println("6. Maintanence List for Vehicles/Automatic Vendors.");
-    System.out.println("7. Get Full List Of: Vehicles/UserCards/Vendors/Stations/Tickets ");
-    System.out.println("0. Return.");
+        admin:
+        while (choice != 0) {
+            System.out.println("Welcome Admin");
+            System.out.println("What Would You Like To Do Today?");
+            System.out.println("1. Check Tickets Sold In The Last 6 Months For Each Vendor.");
+            System.out.println("2. Control Subscription Validity.");
+            System.out.println("3. Validate Ticket.");
+            System.out.println("4. Check Tickets Validated In The Last 6 Months On Specific Bus/Tram.");
+            System.out.println("5. Vehicle Info.");
+            System.out.println("6. Maintanence List for Vehicles/Automatic Vendors.");
+            System.out.println("7. Get Full List Of: Vehicles/UserCards/Vendors/Stations/Tickets ");
+            System.out.println("0. Return.");
 
-    choice= Integer.parseInt(input.nextLine());
+            choice= Integer.parseInt(input.nextLine());
 
-    try {
-        if (choice < 0 || choice > 7) throw new RuntimeException("Choice Dosen't Exist!");
-        switch (choice) {
-            case 1:
-
-
-                System.out.println("**************Sold In The Last 6 Months For Each Vendor***************");
-
-                ticketVendorDao.getTicketsByRangeDate(LocalDate.now().minusMonths(6), LocalDate.now()).forEach((map, help) -> System.out.println(map + " " + help));
-                break;
-//71b06e89f457d31f4b2bda07131d59abbd706d6b
-            case 2:
-                while (true) {
-                    try {
-                System.out.println("Insert User UUID!");
-                UUID id = UUID.fromString(input.nextLine());
-                System.out.println(userCardDAO.isSubscritionValid(id));
-
-                break;
-                    }catch (Exception e) {
-                        System.err.println(e.getMessage());
-                    }
-                }
-                break ;
-            case 3:
-                while (true) {
-                    try {
-                        System.out.println("Insert User UUID for validate his ticket!");
-                        UUID id = UUID.fromString(input.nextLine());
-                        System.out.println("Where was the ticket validated?");
-                        UUID transId = UUID.fromString(input.nextLine());
-                        ticketDAO.validateTicket(id , transId);
-
+            try {
+                if (choice < 0 || choice > 7) throw new RuntimeException("Choice Dosen't Exist!");
+                switch (choice) {
+                    case 1:
+                        System.out.println("**************Sold In The Last 6 Months For Each Vendor***************");
+                        ticketVendorDao.getTicketsByRangeDate(LocalDate.now().minusMonths(6), LocalDate.now()).forEach((map, help) -> System.out.println(map + " " + help));
                         break;
-                    }catch (Exception e) {
-                        System.err.println(e.getMessage());
-                    }
-                }
-                break ;
-            case 4:
-                System.out.println("**************Validated In The Last 6 Months******************");
-                publicTransportDao.getTicketsByRangeDate(LocalDate.now().minusMonths(6), LocalDate.now()).forEach((map, help) -> System.out.println(map + " " + help));
-                break;
-            case 5:
-                while (true) {
-                    try {
-                        System.out.println("Insert Public Transport UUID!");
-                        UUID id = UUID.fromString(input.nextLine());
-                    System.out.println(publicTransportDao.searchById(id));
+                        //71b06e89f457d31f4b2bda07131d59abbd706d6b
+                    case 2:
+                        while (true) {
+                            try {
+                                System.out.println("Insert User UUID!");
+                                UUID id = UUID.fromString(input.nextLine());
+                                System.out.println(userCardDAO.isSubscritionValid(id));
+                                break;
+                            }catch (Exception e) {
+                                System.err.println(e.getMessage());
+                            }
+                        }
                         break;
-                    }catch (Exception e) {
-                        System.err.println(e.getMessage());
-                    }
+                    case 3:
+                        while (true) {
+                            try {
+                                System.out.println("Insert User UUID for validate his ticket!");
+                                UUID id = UUID.fromString(input.nextLine());
+                                System.out.println("Where was the ticket validated?");
+                                UUID transId = UUID.fromString(input.nextLine());
+                                ticketDAO.validateTicket(id , transId);
+                                break;
+                            }catch (Exception e) {
+                                System.err.println(e.getMessage());
+                            }
+                        }
+                        break ;
+                    case 4:
+                        System.out.println("**************Validated In The Last 6 Months******************");
+                        publicTransportDao.getTicketsByRangeDate(LocalDate.now().minusMonths(6), LocalDate.now()).forEach((map, help) -> System.out.println(map + " " + help));
+                        break;
+                    case 5:
+                        while (true) {
+                            try {
+                                System.out.println("Insert Public Transport UUID!");
+                                UUID id = UUID.fromString(input.nextLine());
+                            System.out.println(publicTransportDao.searchById(id));
+                                break;
+                            }catch (Exception e) {
+                                System.err.println(e.getMessage());
+                            }
+                        }
+                        break ;
+                    case 6:
+                        System.out.println("******************OUT OF SERVICE TRANSPORTS*************************");
+                        publicTransportDao.getOutOfServiceTransports().forEach(System.out::println);
+                        System.out.println("**********************OUT OF SERVICE MACHINES*********************");
+                        ticketVendorDao.getOutOfServiceMachines().forEach(System.out::println);
+                        break;
+                    case 7:
+                        System.out.println("*****************************VEHICLES**********************************");
+                        publicTransportDao.showListPublicTransport().forEach(System.out::println);
+                        System.out.println("*****************************USER CARDS**********************************");
+                        userCardDAO.printUserCards().forEach(System.out::println);
+                        System.out.println("*****************************TICKETS**********************************");
+                        ticketDAO.printTickets().forEach(System.out::println);
+                        System.out.println("*****************************TICKET VENDORS**********************************");
+                        ticketVendorDao.showListTicketVendor().forEach(System.out::println);
+                        System.out.println("*****************************STATIONS**********************************");
+                        stationDAO.showListStation().forEach(System.out::println);
+                        break;
+                    case 0:
+                        break admin;
                 }
-break ;
-            case 6:
-                System.out.println("******************OUT OF SERVICE TRANSPORTS*************************");
-publicTransportDao.getOutOfServiceTransports().forEach(System.out::println);
-                System.out.println("**********************OUT OF SERVICE MACHINES*********************");
-                ticketVendorDao.getOutOfServiceMachines().forEach(System.out::println);
-                break;
-            case 7:
-                System.out.println("*****************************VEHICLES**********************************");
-                publicTransportDao.showListPublicTransport().forEach(System.out::println);
-                System.out.println("*****************************USER CARDS**********************************");
-                userCardDAO.printUserCards().forEach(System.out::println);
-                System.out.println("*****************************TICKETS**********************************");
-                ticketDAO.printTickets().forEach(System.out::println);
-                System.out.println("*****************************TICKET VENDORS**********************************");
-                ticketVendorDao.showListTicketVendor().forEach(System.out::println);
-                System.out.println("*****************************STATIONS**********************************");
-                stationDAO.showListStation().forEach(System.out::println);
-                break;
-            case 0:
-break admin;
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
         }
-    } catch (Exception e) {
-        System.err.println(e.getMessage());
     }
-
-
-}
-
-
-    }
-
-
 }
