@@ -90,28 +90,26 @@ public class Scan {
                                 Ticket ticket = new Ticket(LocalDate.now(), ticketVendorDao.searchById(id));
                                 ticketDAO.save(ticket);
                                 System.out.println(ticket.toString());
-
+                                break;
                             }catch (Exception e) {
                                 System.err.println(e.getMessage());
                             }
-break;
                         }
                         break;
                     case 2:
                         while (true) {
                             try {
-                                System.out.println("Insert UUID!");
+                                System.out.println("Insert Ticket UUID!");
                                 UUID id = UUID.fromString(input.nextLine());
                                 System.out.println("Where was the ticket validated?");
                                 UUID transId = UUID.fromString(input.nextLine());
                                 ticketDAO.validateTicket(id , transId);
-
+                                break;
                             }catch (Exception e) {
                                 System.err.println(e.getMessage());
                             }
-break;
                         }
-break;
+                        break;
                     case 3:
                         while (true) {
                             try {
@@ -129,13 +127,13 @@ break;
                                 UserCard userCard = new UserCard(name , surname , LocalDate.of(yearOfBirth,monthOfBirth,dayOfBirth), LocalDate.now());
                                 userCardDAO.save(userCard);
                                 System.out.println(userCard.toString());
+                                break;
 
                             }catch (Exception e) {
                                 System.err.println(e.getMessage());
                             }
-                            break;
                         }
-break;
+                        break;
                     case 4:
                         while (true) {
                             try {
@@ -146,13 +144,12 @@ break;
                                 TicketSubscription ticket = new TicketSubscription(LocalDate.now(), ticketVendorDao.searchById(id), Period.WEEKLY, userCardDAO.findElementById(userId) );
                                 ticketDAO.save(ticket);
                                 System.out.println(ticket.toString());
-
+                                break;
                             }catch (Exception e) {
                                 System.err.println(e.getMessage());
                             }
-                            break;
                         }
-break;
+                        break;
                     case 5:
                         while (true) {
                             try {
@@ -167,7 +164,7 @@ break;
                             }catch (Exception e) {
                                 System.err.println(e.getMessage());
                             }
-                            break;
+
                         }
                         break;
                     case 0:
@@ -218,8 +215,8 @@ while (choice != 0) {
         switch (choice) {
             case 1:
 
-                    TicketsSold.TicketSold();
 
+                System.out.println("**************Sold In The Last 6 Months For Each Vendor***************");
 
                 ticketVendorDao.getTicketsByRangeDate(LocalDate.now().minusMonths(6), LocalDate.now()).forEach((map, help) -> System.out.println(map + " " + help));
                 break;
@@ -227,7 +224,7 @@ while (choice != 0) {
             case 2:
                 while (true) {
                     try {
-                System.out.println("Insert UUID!");
+                System.out.println("Insert User UUID!");
                 UUID id = UUID.fromString(input.nextLine());
                 System.out.println(userCardDAO.isSubscritionValid(id));
 
@@ -240,7 +237,7 @@ while (choice != 0) {
             case 3:
                 while (true) {
                     try {
-                        System.out.println("Insert UUID!");
+                        System.out.println("Insert User UUID for validate his ticket!");
                         UUID id = UUID.fromString(input.nextLine());
                         System.out.println("Where was the ticket validated?");
                         UUID transId = UUID.fromString(input.nextLine());
@@ -253,6 +250,7 @@ while (choice != 0) {
                 }
                 break ;
             case 4:
+                System.out.println("**************Validated In The Last 6 Months******************");
                 publicTransportDao.getTicketsByRangeDate(LocalDate.now().minusMonths(6), LocalDate.now()).forEach((map, help) -> System.out.println(map + " " + help));
                 break;
             case 5:
