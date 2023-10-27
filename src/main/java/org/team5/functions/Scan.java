@@ -85,7 +85,7 @@ public class Scan {
                     case 1:
                         while (true) {
                             try {
-                                System.out.println("Insert il'UUID del Vendor!");
+                                System.out.println("Insert Vendor UUID!");
                                 UUID id = UUID.fromString(input.nextLine());
                                 Ticket ticket = new Ticket(LocalDate.now(), ticketVendorDao.searchById(id));
                                 ticketDAO.save(ticket);
@@ -137,9 +137,9 @@ public class Scan {
                     case 4:
                         while (true) {
                             try {
-                                System.out.println("Insert il'UUID del Vendor!");
+                                System.out.println("Insert Vendor UUID !");
                                 UUID id = UUID.fromString(input.nextLine());
-                                System.out.println("Insert il'UUID del Tuo UserCard");
+                                System.out.println("Insert UserCard UUID ");
                                 UUID userId = UUID.fromString(input.nextLine());
                                 TicketSubscription ticket = new TicketSubscription(LocalDate.now(), ticketVendorDao.searchById(id), Period.WEEKLY, userCardDAO.findElementById(userId) );
                                 ticketDAO.save(ticket);
@@ -153,9 +153,9 @@ public class Scan {
                     case 5:
                         while (true) {
                             try {
-                                System.out.println("Insert il'UUID del Vendor!");
+                                System.out.println("Insert vendor UUID !");
                                 UUID id = UUID.fromString(input.nextLine());
-                                System.out.println("Insert il'UUID del Tuo UserCard");
+                                System.out.println("Insert UserCard UUID ");
                                 UUID userId = UUID.fromString(input.nextLine());
                                 TicketSubscription ticket = new TicketSubscription(LocalDate.now(), ticketVendorDao.searchById(id), Period.MONTHLY, userCardDAO.findElementById(userId) );
                                 ticketDAO.save(ticket);
