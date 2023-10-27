@@ -1,13 +1,14 @@
 package org.team5.dao;
 
-import org.team5.entities.PublicTransport;
-import org.team5.entities.Route;
-import org.team5.entities.Station;
+import org.team5.entities.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class PublicTransportDao {
@@ -72,4 +73,28 @@ public class PublicTransportDao {
         TypedQuery<PublicTransport> outOfServiceTransportQuery = em.createQuery("SELECT p FROM PublicTransport p WHERE p.status = 'OUT_OF_SERVICE'", PublicTransport.class);
         return outOfServiceTransportQuery.getResultList();
     }
+
+    public Map<PublicTransport, List<Ticket>> getTicketsByRangeDate(LocalDate d1, LocalDate d2) {
+        TypedQuery<PublicTransport> vendorQuery = em.createQuery("SELECT pb FROM PublicTransport pb", PublicTransport.class);
+        List<PublicTransport> publicTransports = vendorQuery.getResultList();
+
+        Map<PublicTransport, List<Ticket>> publicTransportListMap = new HashMap<>();
+
+        for (PublicTransport publicTransport : publicTransports) {
+            TypedQuery<Ticket> getTicketsQuery = em.createQuery(
+                    "SELECT t FROM Ticket t WHERE t.expiryDate BETWEEN :d1 AND :d2 AND t.publicTransport = :publicTransport",
+                    Ticket.class
+            );
+            getTicketsQuery.setParameter("d1", d1);
+            getTicketsQuery.setParameter("d2", d2);
+            getTicketsQuery.setParameter("publicTransport", publicTransport);
+
+            List<Ticket> tickets = getTicketsQuery.getResultList();
+            publicTransportListMap.put(publicTransport, tickets);
+        }
+
+        return publicTransportListMap;
+    }
+
+
 }

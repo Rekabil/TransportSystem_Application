@@ -1,6 +1,7 @@
 package org.team5.dao;
 
 
+import org.team5.entities.PublicTransport;
 import org.team5.entities.Ticket;
 import org.team5.entities.TicketVendor;
 
@@ -47,6 +48,11 @@ public class TicketVendorDao {
     public List<TicketVendor> showListTicketVendor(){
         TypedQuery<TicketVendor> getListQuery = em.createQuery("SELECT t FROM TicketVendor t", TicketVendor.class);
         return getListQuery.getResultList();
+    }
+
+    public List<TicketVendor> getOutOfServiceMachines(){
+        TypedQuery<TicketVendor> outOfServiceTransportQuery = em.createQuery("SELECT tv FROM TicketVendor tv WHERE tv.machineStatus = 'OUT_OF_ORDER'", TicketVendor.class);
+        return outOfServiceTransportQuery.getResultList();
     }
 
     public Map<TicketVendor, List<Ticket>> getTicketsByRangeDate(LocalDate d1, LocalDate d2) {

@@ -1,9 +1,6 @@
 package org.team5.dao;
 
-import org.team5.entities.Location;
-import org.team5.entities.PublicTransport;
-import org.team5.entities.Route;
-import org.team5.entities.Station;
+import org.team5.entities.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -52,6 +49,10 @@ public class StationDAO {
         }
     }
 
+    public List<Station> showListStation(){
+        TypedQuery<Station> getListQuery = em.createQuery("SELECT s FROM Station s", Station.class);
+        return getListQuery.getResultList();
+    }
     public List<Station> filterStationByLocation(Location location)
     {
         TypedQuery<Station> getNames = em.createNamedQuery("SELECT s.location FROM Station s WHERE s.location = :location",
